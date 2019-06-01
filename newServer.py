@@ -3,8 +3,8 @@ import socket
 import sys
 import threading
 
+import Astar
 from _thread import *
-
 
 print_lock = threading.Lock()
 ss = "IIO"
@@ -15,18 +15,14 @@ def cnn(c):
         global ss
         data = c.recv(1024)
         ss = data.decode()
-        
         if not data:
             print('Bye')
             print_lock.release()
             break
-        f = open("out", "w+")
-        f.write(ss)
-        f.close()
-        os.system('cmd /r python Astar.py')
+        print(ss)
+        path = Astar.main(ss)
+        print("this is the final path : {}".format(path))
     c.close()
-
-
 
 
 def Main():

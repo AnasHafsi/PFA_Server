@@ -98,11 +98,15 @@ def astar(maze, start, end):
             open_list.append(child)
 
 
-def main():
+def main(simo):
 
-    inp = open("out", "r")
-    simo = inp.read()
     st_lst = simo.split(';')
+    st = st_lst[2]
+    st = st.split(" ")
+    st=tuple(map(int, st))
+    en = st_lst[3]
+    en = en.split(" ")
+    en = tuple(map(int, en))
     maze = st_lst[1]
     size = int(st_lst[0])
     cha = list(maze)
@@ -117,18 +121,16 @@ def main():
         if(i < len(cha)):
             tmp.append(cha[i])
     maze=res
-    start = (0, 0)
-    end = (7, 6)
+    start = st
+    end = en
 
     path = astar(maze, start, end)
     print(path)
     with open('f.txt', 'w') as f:
         for item in path:
             f.write("%s  " % item[0])
-            f.write("%s  " % item[1])
+            f.write("%s" % item[1])
             f.write("\n ")
+    return path
 
-
-
-main()
-time.sleep(5)
+#time.sleep(5)
