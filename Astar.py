@@ -1,5 +1,5 @@
 import time
-
+#TODO Resolve Astar Bug
 class Node():
     """A node class for A* Pathfinding"""
 
