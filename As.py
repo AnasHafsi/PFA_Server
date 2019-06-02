@@ -131,22 +131,35 @@ def astar(maze, start, end, allow_diagonal_movement=False):
             open_list.append(child)
 
 
-def example():
+def expl(mz):
 
-    maze = [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    st_lst = mz.split(';')
+    st = st_lst[2]
+    diag = st_lst[4]
+    print(diag)
+    print(type(diag))
+    st = st.split(" ")
+    st = tuple(map(int, st))
+    en = st_lst[3]
+    en = en.split(" ")
+    en = tuple(map(int, en))
+    maze = st_lst[1]
+    size = int(st_lst[0])
+    cha = list(maze)
+    tmp = []
+    res = []
+    for i in range(len(cha)+size):
+        if (i % size == 0):
+            tmp = list(map(int, tmp))
+            if (tmp != []):
+                res.append(tmp)
+            tmp = []
+        if(i < len(cha)):
+            tmp.append(cha[i])
+    maze = res
+    start = st
+    end = en
 
-    end = (6, 6)
-    start = (6, 1)
-
-    path = astar(maze, start, end)
+    path = astar(maze, start, end,True)
     print(path)
-example()
+    return path

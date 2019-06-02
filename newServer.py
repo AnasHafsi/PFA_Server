@@ -3,7 +3,7 @@ import socket
 import sys
 import threading
 
-import Astar
+import As
 from _thread import *
 
 print_lock = threading.Lock()
@@ -20,7 +20,7 @@ def cnn(c):
             print_lock.release()
             break
         print(ss)
-        path = Astar.main(ss)
+        path = As.expl(ss)
         print("this is the final path : {}".format(path))
     c.close()
 
