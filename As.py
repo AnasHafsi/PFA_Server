@@ -136,8 +136,8 @@ def expl(mz):
     st_lst = mz.split(';')
     st = st_lst[2]
     diag = st_lst[4]
-    print(diag)
-    print(type(diag))
+    isDiag=False
+    if(diag=='1') : isDiag=True
     st = st.split(" ")
     st = tuple(map(int, st))
     en = st_lst[3]
@@ -160,6 +160,5 @@ def expl(mz):
     start = st
     end = en
 
-    path = astar(maze, start, end,True)
-    print(path)
+    path = astar(maze, start, end,isDiag)
     return path
