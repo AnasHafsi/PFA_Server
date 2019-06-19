@@ -159,6 +159,5 @@ def expl(mz):
     maze = res
     start = st
     end = en
-
     path = astar(maze, start, end,isDiag)
     return path
