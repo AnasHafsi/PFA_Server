@@ -66,9 +66,9 @@ def astar(maze, start, end):
             open_list.append(child)
 
 
-def main(simo):
+def main(st):
 
-    st_lst = simo.split(';')
+    st_lst = st.split(';')
     st = st_lst[2]
     st = st.split(" ")
     st=tuple(map(int, st))
