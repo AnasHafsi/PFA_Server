@@ -77,7 +77,7 @@ def astar(maze, start, end, allow_diagonal_movement=False):
             open_list.append(child)
 
 
-def expl(mz):
+def main(mz):
 
     st_lst = mz.split(';')
     st = st_lst[2]
@@ -106,6 +106,14 @@ def expl(mz):
     start = st
     end = en
     path = astar(maze, start, end,isDiag)
-    move.main(path)
-
+    tst = True
+    print(maze)
+    print(path)
+    m = 0
+    while tst:
+        (tst,pt)=move.main(path,m)
+        if (tst):maze[pt[0]][pt[1]]=1
+        path = astar(maze, start, end,isDiag)
+        print(maze)
+        m=1
     return path

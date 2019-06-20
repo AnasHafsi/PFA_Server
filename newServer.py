@@ -19,7 +19,7 @@ def cnn(c):
             print('Bye')
             print_lock.release()
             break
-        path = As.expl(ss)
+        path = As.main(ss)
         print("this is the final path : {}".format(path))
     c.close()
 
