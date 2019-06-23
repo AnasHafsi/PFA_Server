@@ -20,7 +20,7 @@ def cnn(c):
             print_lock.release()
             break
         path = As.main(ss)
-        print("this is the final path : {}".format(path))
+        c.sendall(str(path).encode('utf-8'))
     c.close()
 
 

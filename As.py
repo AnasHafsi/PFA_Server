@@ -107,13 +107,14 @@ def main(mz):
     end = en
     path = astar(maze, start, end,isDiag)
     tst = True
-    print(maze)
-    print(path)
-    m = 0
+    fin=[]
     while tst:
-        (tst,pt)=move.main(path,m)
-        if (tst):maze[pt[0]][pt[1]]=1
-        path = astar(maze, start, end,isDiag)
-        print(maze)
-        m=1
-    return path
+        (tst, pt, b, final) = move.main(path)
+        fin.append(final)
+        if (tst):
+            maze[pt[0]+b[0]][pt[1]+b[1]]=1
+            print("maze changed")
+        path = astar(maze, pt, end,isDiag)
+    fin.append(en)  
+    print("this is the final path : {}".format(fin))
+    return fin

@@ -2,20 +2,21 @@ import numpy
 import gpiozero
 from time import sleep
 
-def main(path,k) :
+def main(path) :
     #sensor = DistanceSensor(echo=18, trigger=17)
     a = path
     #sensor.distance < 100
-    esc=(-1,-1)
     prob=False
+    final=[]
+    esc=(-1,-1)
+    k=0
     for i in range(len(a)-1):
-        if(k==0) : 
+        b = tuple(numpy.subtract(a[i+1], a[i]))
+        if(k==3) : 
             esc = a[i]
             print("obstacle detected")
-            prob=True
-            break
-        b = tuple(numpy.subtract(a[i], a[i+1]))
-        print(b)
+            return True, esc, b,final
+        k=k+1
         if b == (1, 1):
             print("move diag + +")
         elif b == (-1, -1):
@@ -32,5 +33,7 @@ def main(path,k) :
             print("move left")
         elif b == (0,1):
             print("move right")
-        sleep(5)
-    return prob,esc
+        final.append(a[i])
+        sleep(2)
+        
+    return prob,esc,b,final
