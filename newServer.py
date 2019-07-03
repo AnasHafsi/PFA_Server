@@ -1,9 +1,12 @@
+import json
 import os
 import socket
 import sys
 import threading
 
-import As
+import numpy as np
+from time import sleep
+import AstarAlt as As
 from _thread import *
 
 print_lock = threading.Lock()
@@ -17,10 +20,30 @@ def cnn(c):
         ss = data.decode()
         if not data:
             print('Bye')
+            sleep(3000)
             print_lock.release()
             break
-        path = As.main(ss)
-        c.sendall(str(path).encode('utf-8'))
+        lst = ss.split("\n")
+        if "sendAutoObject" in lst[0]:
+            s=lst[1]
+            s = s.replace("\'", "\"")
+            obj = json.loads(s)
+            dim = (obj["rows"], obj["columns"])
+            maze = np.zeros(dim, dtype=int)
+            start = (obj["d"]["row"], obj["d"]["col"])
+            fin = (obj["f"]["row"], obj["f"]["col"])
+            print(len(obj["block"]))
+            for i in range(len(obj["block"])):
+                maze[obj["block"][i]["row"]][obj["block"][i]["col"]] = 1
+            path = As.main(maze,start,fin)
+            c.sendall(str(path).encode())
+            print(path)
+        elif "Manuel" in lst[0]:
+            print("ManuelMode")
+        #path = As.main(ss)
+
+    
+        #c.sendall(str(path).encode('utf-8'))
     c.close()
 
 

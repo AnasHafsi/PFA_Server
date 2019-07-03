@@ -1,0 +1,10 @@
+<!--Fichier activity_main.xml-->
+<EditText
+                android:id="@+id/idDutext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType=""
+                android:text="@string/TextPredefini"
+                tools:targetApi="o" />

@@ -3,52 +3,6 @@ import gpiozero
 from gpiozero import LED
 from time import sleep
 
-bit0 = LED(17)
-bit1 = LED(27)
-bit2 = LED(22)
-
-
-def tle3():
-    bit0.on()
-    bit1.off()
-    bit2.off()
-
-
-def linmn():
-    bit0.on()
-    bit1.on()
-    bit2.off()
-
-
-def lisr():
-    bit0.off()
-    bit1.on()
-    bit2.off()
-
-
-def lor():
-    bit0.off()
-    bit1.off()
-    bit2.on()
-
-
-def diagP():
-    bit0.on()
-    bit1.off()
-    bit2.on()
-
-
-def diagM():
-    bit0.off()
-    bit1.on()
-    bit2.on()
-
-
-def stop():
-    bit0.on()
-    bit1.on()
-    bit2.on()
-
 
 def main(path):
     #sensor = DistanceSensor(echo=18, trigger=17)
